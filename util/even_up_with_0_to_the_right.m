@@ -4,7 +4,9 @@ function [x1, x2] = even_up_with_0_to_the_right(x1, x2)
 		return
 	endif
 	
-	while (size(x1, 2) < size(x2, 2))
-		x1 = [x1, "0"];
-	endwhile
+	if (size(x1, 2) < size(x2, 2))
+		diff = size(x2, 2) - size(x1, 2);
+		mat = repmat("0", size(x1, 1), diff);
+		x1 = [x1, mat];
+	endif
 endfunction

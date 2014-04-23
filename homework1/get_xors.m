@@ -1,4 +1,4 @@
-function xors = getxors(ciptxt)
+function xors = get_xors(ciptxt)
 	xors = {};
 	limit = size(ciptxt, 2);
 	for i = 1:limit

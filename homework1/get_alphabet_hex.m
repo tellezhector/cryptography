@@ -1,4 +1,4 @@
-function alph = getalphabethex()
+function alph = get_alphabet_hex()
 	al = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	alph = [];
 	for t=al

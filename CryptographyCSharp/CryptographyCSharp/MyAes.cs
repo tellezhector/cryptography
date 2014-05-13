@@ -12,32 +12,27 @@ namespace CryptographyCSharp
             if (key_hex == null)
                 throw new ArgumentNullException("key_hex");
 
-            byte[] encrypted = new byte[16];
+            byte[] output = new byte[16];
             msg_hex = msg_hex.PadRight(32, '0');
             key_hex = key_hex.PadRight(32, '0');
-            using (Aes aes = Aes.Create())
+            using (var aes = Aes.Create("AES"))
             {
-                aes.Key = key_hex.hex2bytes();
-                aes.IV = new byte[16];
+                
                 aes.BlockSize = 128;
                 aes.KeySize = 128;
+                aes.Mode = CipherMode.ECB;
+                aes.Padding = PaddingMode.None;
                 if (!aes.ValidKeySize(128))
                 {
                     throw new Exception();
                 }
 
-
-                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-                aes.Clear();
-                encryptor.TransformBlock(msg_hex.hex2bytes(), 0, 16, encrypted, 0);
+                ICryptoTransform encryptor = aes.CreateEncryptor(key_hex.hex2bytes(), null);
+                encryptor.TransformBlock(msg_hex.hex2bytes(), 0, 16, output, 0);
                 encryptor.Dispose();
-                Console.WriteLine("how it looks in bin: {0}", encrypted.tobin());
-                Console.WriteLine("how it looks in hex: {0}", encrypted.tohex());
-                Console.WriteLine("how it looks in ascii: {0}", encrypted.tostr());
-                Console.WriteLine("encrypted size: {0}", encrypted.Length);
             }
 
-            return encrypted.tohex();
+            return output.tohex();
         }
 
         public static string DecryptStringFromBytes_Aes(string hex_ct, string key_hex)
@@ -51,16 +46,21 @@ namespace CryptographyCSharp
             key_hex = key_hex.PadRight(32, '0');
             string plaintext = null;
 
-            using (Aes aesAlg = Aes.Create())
+            using (Aes aes = Aes.Create("AES"))
             {
-                aesAlg.Key = key_hex.hex2bytes();
-                aesAlg.IV = "00000000000000000000000000000000".hex2bytes();
-                aesAlg.BlockSize = 128;
+                aes.BlockSize = 128;
+                aes.KeySize = 128;
+                aes.Mode = CipherMode.ECB;
+                aes.Padding = PaddingMode.None;
+                
+                if (!aes.ValidKeySize(128))
+                {
+                    throw new Exception();
+                }
 
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-                var cipherText = hex_ct.hex2bytes();
+                ICryptoTransform decryptor = aes.CreateDecryptor(key_hex.hex2bytes(), null);
                 var output = new byte[16];
-                decryptor.TransformBlock(cipherText, 0, 16, output, 0);
+                decryptor.TransformBlock(hex_ct.hex2bytes(), 0, 16, output, 0);
                 plaintext = output.tohex();
             }
 

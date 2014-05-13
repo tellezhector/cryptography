@@ -6,7 +6,7 @@ namespace CryptographyCSharp
 
     public class HashDirectory
     {
-        public static void asdf()
+        public static void HashFile()
         {
             try
             {

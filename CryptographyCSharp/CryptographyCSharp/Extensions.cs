@@ -15,7 +15,7 @@ namespace CryptographyCSharp
             foreach (char letter in str)
             {
                 int value = Convert.ToInt32(letter);
-                preOutput.Add(String.Format("{0:X}", value));
+                preOutput.Add(String.Format("{0:X2}", value));
             }
 
             return String.Join(String.Empty, preOutput);

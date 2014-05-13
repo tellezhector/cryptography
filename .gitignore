@@ -3,3 +3,4 @@
 *.FileListAbsolute.txt
 *.cache
 *.suo
+bin/*

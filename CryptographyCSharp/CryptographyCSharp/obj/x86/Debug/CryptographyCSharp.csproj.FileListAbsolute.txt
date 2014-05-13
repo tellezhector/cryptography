@@ -1,5 +1,0 @@
-D:\Projects\cryptography\CryptographyCSharp\CryptographyCSharp\bin\Debug\CryptographyCSharp.exe
-D:\Projects\cryptography\CryptographyCSharp\CryptographyCSharp\bin\Debug\CryptographyCSharp.pdb
-D:\Projects\cryptography\CryptographyCSharp\CryptographyCSharp\obj\x86\Debug\CryptographyCSharp.exe
-D:\Projects\cryptography\CryptographyCSharp\CryptographyCSharp\obj\x86\Debug\CryptographyCSharp.pdb
-D:\Projects\cryptography\CryptographyCSharp\CryptographyCSharp\bin\Debug\6 - 2 - Generic birthday attack (16 min).mp4

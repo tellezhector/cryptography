@@ -2,6 +2,7 @@ namespace CryptographyCSharp
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public static class Extensions
@@ -88,7 +89,15 @@ namespace CryptographyCSharp
 
         public static byte[] hex2bytes(this string hex)
         {
-            return hex.hex2bin().bin2bytes();
+            if (hex.Length % 2 != 0)
+            {
+                throw new Exception("Wrong hex format.");
+            }
+
+            return Enumerable.Range(0, hex.Length)
+                 .Where(x => x % 2 == 0)
+                 .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                 .ToArray();
         }
 
         public static byte[] bin2bytes(this string bin)

@@ -25,7 +25,7 @@ namespace CryptographyCSharp
 
         public static string XORhex(string hex1, string hex2)
         {
-            return XORstrings(hex1.hex2str(), hex2.hex2str());
+            return XOR(hex1.hex2bytes(), hex2.hex2bytes()).tohex();
         }
     }
 }

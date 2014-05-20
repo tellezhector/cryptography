@@ -2,16 +2,14 @@
 {
     using System;
 
+    using CryptographyCSharp.FourthHomeWork;
+
     class Program
     {
         static void Main(string[] args)
         {
-            string line = "next";
-            while (line != "exit")
-            {
-                TestingUtility();
-                line = Console.ReadLine();       
-            }
+            new ChosenPaddingAttack().BreakSec();
+            Console.WriteLine("Exit");
         }
 
         private static void TestingUtility()

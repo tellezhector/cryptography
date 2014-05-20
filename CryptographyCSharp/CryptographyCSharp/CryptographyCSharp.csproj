@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions.cs" />
+    <Compile Include="FourthHomeWork\ChosenPaddingAttack.cs" />
     <Compile Include="HashDirectory.cs" />
     <Compile Include="MyAes.cs" />
     <Compile Include="Program.cs" />
